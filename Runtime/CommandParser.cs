@@ -54,8 +54,6 @@ namespace CodeConsole
 
             string commandName = match.Groups["command"].Value;
 
-            Debug.Log($"Parsed command name {commandName}");
-
             if (!RegistredCommands.ContainsKey(commandName))
             {
                 throw new InvalidOperationException($"Cannot parse unknown command: <{commandName}>");

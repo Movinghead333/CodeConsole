@@ -98,7 +98,6 @@ namespace CodeConsole
         private void OnSubmitTextInput(string textInput)
         {
             // Update console window
-            Debug.Log($"OnSubmitTextInput called: {textInput}");
             string timestamp = ShowTimestamps ? DateTime.Now.TimeOfDay.ToString("hh':'mm':'ss") : "";
             ConsoleContent += $"[{timestamp}]: {textInput}\n";
             ConsoleText.text = ConsoleContent;
@@ -117,7 +116,6 @@ namespace CodeConsole
             catch (Exception e)
             {
                 Log(e.Message);
-                Debug.LogWarning(e.ToString());
             }
 
             OnTextInputSubmitted?.Invoke(textInput);
