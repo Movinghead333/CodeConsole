@@ -1,6 +1,6 @@
 {
     "name": "com.movinghead333.codeconsole",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "displayName": "Code Console",
     "description": "This package provides a simple console where text can be entered and shown. Also provides a mechanism to register commands.",
     "unity": "2022.3",
