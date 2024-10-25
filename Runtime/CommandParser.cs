@@ -33,7 +33,6 @@ namespace CodeConsole
 
         public CommandInstance TryParseCommandString(string commandString)
         {
-            //string commandRegex = @"(?<command>\w+)(?<argument>\s+-\w+\s+\w+)*";
             string commandRegex = "(?<command>\\w+)(\\s+(?<argumenttag>-\\w+)\\s+(?<argumentvalue>\"[\\w\\s]+\"))*";
 
             // Example command: "test -x \"test arg1 \" -p \"test arrrge 2\""
@@ -58,7 +57,7 @@ namespace CodeConsole
             {
                 throw new InvalidOperationException($"Cannot parse unknown command: <{commandName}>");
             }
-            
+
             Dictionary<string, string> commandArgumentTagsWithValues = new Dictionary<string, string>();
             for (int i = 0; i < match.Groups["argumenttag"].Captures.Count; i++)
             {
@@ -179,7 +178,7 @@ namespace CodeConsole
     public class CommandInstance
     {
         public string CommandName;
-        public Dictionary<string ,ArgumentInstance> ArgumentInstances;
+        public Dictionary<string, ArgumentInstance> ArgumentInstances;
 
         public CommandInstance(string commandName, List<ArgumentInstance> argumentInstances)
         {
@@ -197,7 +196,7 @@ namespace CodeConsole
         public dynamic DefaultValue;
         public Type T;
 
-        public ArgumentDefinition(string argumentTag, string argumentName, Type t,  string helpText, string defaultValue, bool required)
+        public ArgumentDefinition(string argumentTag, string argumentName, Type t, string helpText, string defaultValue, bool required)
         {
             ArgumentTag = argumentTag;
             ArgumentName = argumentName;
