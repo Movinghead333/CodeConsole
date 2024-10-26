@@ -33,7 +33,7 @@ namespace CodeConsole
 
         public CommandInstance TryParseCommandString(string commandString)
         {
-            string commandRegex = "(?<command>\\w+)(\\s+(?<argumenttag>-\\w+)\\s+(?<argumentvalue>\"[\\w\\s]+\"))*";
+            string commandRegex = "(?<command>\\w+)(\\s+(?<argumenttag>-\\w+)\\s+(?<argumentvalue>((\"[\\w\\s]+\")|(\\w+))))*";
 
             // Example command: "test -x \"test arg1 \" -p \"test arrrge 2\""
             Match match = Regex.Match(commandString, commandRegex);
@@ -64,7 +64,12 @@ namespace CodeConsole
                 string argumentTag = match.Groups["argumenttag"].Captures[i].Value;
                 string argumentValue = match.Groups["argumentvalue"].Captures[i].Value;
 
-                commandArgumentTagsWithValues[argumentTag] = argumentValue.Substring(1, argumentValue.Length - 2);
+                if (argumentValue[0] == '\"')
+                {
+                    argumentValue = argumentValue.Substring(1, argumentValue.Length - 2);
+                }
+
+                commandArgumentTagsWithValues[argumentTag] = argumentValue;
             }
 
             CommandDefinition parsedCommandDefinition = RegistredCommands[commandName];
