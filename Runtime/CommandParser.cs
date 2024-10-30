@@ -1,13 +1,20 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
-using UnityEngine;
 
 namespace CodeConsole
 {
+    /// <summary>
+    /// The <see cref="CommandParser"/> class provides both capabilities to setup and parse command line interface style
+    /// command definitions.
+    /// <br/><br/>
+    /// 1. Commands can be defined using the <see cref="CommandDefinition"/> and 
+    /// <see cref="ArgumentDefinition"/> classes to first create a complete defintion of desired command.<br/>
+    /// 2. The command can subsequently be registered via <see cref="RegisterCommand(CommandDefinition)"/>
+    /// and can later be unregistered via <see cref="RegisterCommand(CommandDefinition)"/>.<br/>
+    /// 3. A command <see cref="string"/> can be attempted to be parsed with <see cref="UnregisterCommand(CommandDefinition)"/>
+    /// </summary>
     public class CommandParser
     {
         public static Dictionary<Type, Func<string, dynamic>> TypeConverters = new Dictionary<Type, Func<string, dynamic>>
